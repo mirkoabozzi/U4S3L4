@@ -33,9 +33,8 @@ public class Person {
     @OneToMany(mappedBy = "person")
     private List<Partecipation> partecipationList;
 
-    @OneToMany()
-    @JoinColumn(name = "winner")
-    private List<AthleticCompetition> athleticCompetitionList;
+    @ManyToMany(mappedBy = "athletes")
+    private List<AthleticCompetition> athleticCompetitionsList;
 
 
     public Person() {
@@ -99,6 +98,14 @@ public class Person {
 
     public void setPartecipationList(List<Partecipation> partecipationList) {
         this.partecipationList = partecipationList;
+    }
+
+    public List<AthleticCompetition> getAthleticCompetitionsList() {
+        return athleticCompetitionsList;
+    }
+
+    public void setAthleticCompetitionsList(List<AthleticCompetition> athleticCompetitionsList) {
+        this.athleticCompetitionsList = athleticCompetitionsList;
     }
 
     @Override
