@@ -59,5 +59,10 @@ public class EventDAO { // buona prassi creare dei DAO per ogni tabella in modo 
         return query.getResultList();
     }
 
+    public List<FootballMatch> getGuestMatchWon() {
+        TypedQuery<FootballMatch> query = em.createQuery("SELECT e FROM FootballMatch e WHERE guestFootballTeam = winner", FootballMatch.class);
+        return query.getResultList();
+    }
+
 
 }

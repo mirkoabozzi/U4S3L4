@@ -73,6 +73,7 @@ public class Application {
         ed.getConcertPerGenere(ConcertType.CLASSIC).forEach(System.out::println);
 
         ed.getHomeMatchWon().forEach(System.out::println);
+        ed.getGuestMatchWon().forEach(System.out::println);
 
 
     }
