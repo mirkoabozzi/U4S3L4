@@ -8,6 +8,7 @@ import mirkoabozzi.dao.LocationDAO;
 import mirkoabozzi.dao.PartecipationDAO;
 import mirkoabozzi.dao.PersonDAO;
 import mirkoabozzi.entities.Concert;
+import mirkoabozzi.entities.FootballMatch;
 import mirkoabozzi.entities.Location;
 import mirkoabozzi.enums.ConcertType;
 import mirkoabozzi.enums.EventType;
@@ -47,8 +48,32 @@ public class Application {
 //        ed.save(concert2);
 //        ed.save(concert3);
 
+        Location sanSiro = new Location("San Siro", "Milano");
+        Location campNow = new Location("Camp Nou", "Barcellona");
+        Location allianz = new Location("Allianz Arena", "Monaco");
+
+//        ld.save(sanSiro);
+//        ld.save(campNow);
+//        ld.save(allianz);
+
+        Location sanSiroFromDb = ld.getById("c7d2b753-3104-43ea-a821-fff20b430034");
+        Location campNowFromDb = ld.getById("0e9e216c-a4bf-485e-b923-26ef039d34fa");
+        Location allianzFromDb = ld.getById("3e5d4312-7b61-4fe0-ba30-6f5a0a8f04b9");
+
+        FootballMatch match1 = new FootballMatch("Derby della Madonnina", LocalDate.of(2024, 10, 22), "Il famoso derby di Milano tra Inter e Milan.", EventType.PUBBLIC, 75000, sanSiroFromDb, "Inter", "Milan", "Milan", 1, 2);
+        FootballMatch match2 = new FootballMatch("El Clásico", LocalDate.of(2024, 11, 3), "La storica sfida tra Barcellona e Real Madrid.", EventType.PUBBLIC, 95000, campNowFromDb, "Barcellona", "Real Madrid", "Real Madrid", 2, 3);
+        FootballMatch match3 = new FootballMatch("Bundesliga Clash", LocalDate.of(2024, 9, 12), "Una partita decisiva tra Bayern Monaco e Borussia Dortmund.", EventType.PRIVATE, 70000, allianzFromDb, "Bayern Monaco", "Borussia Dortmund", "Bayern Monaco", 3, 1);
+
+//        ed.save(match1);
+//        ed.save(match2);
+//        ed.save(match3);
+
         ed.getStreamingConcert().forEach(System.out::println);
 
         ed.getConcertPerGenere(ConcertType.CLASSIC).forEach(System.out::println);
+
+        ed.getHomeMatchWon().forEach(System.out::println);
+
+
     }
 }

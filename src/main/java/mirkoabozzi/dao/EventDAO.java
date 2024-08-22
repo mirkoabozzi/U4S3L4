@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 import mirkoabozzi.entities.Event;
+import mirkoabozzi.entities.FootballMatch;
 import mirkoabozzi.enums.ConcertType;
 import mirkoabozzi.exceptions.NotFoundException;
 
@@ -50,6 +51,11 @@ public class EventDAO { // buona prassi creare dei DAO per ogni tabella in modo 
     public List<Event> getConcertPerGenere(ConcertType genere) {
         TypedQuery<Event> query = em.createQuery("SELECT e FROM Event e WHERE e.concertType =:genere", Event.class);
         query.setParameter("genere", genere);
+        return query.getResultList();
+    }
+
+    public List<FootballMatch> getHomeMatchWon() {
+        TypedQuery<FootballMatch> query = em.createQuery("SELECT e FROM FootballMatch e WHERE homeFootballTeam = winner", FootballMatch.class);
         return query.getResultList();
     }
 

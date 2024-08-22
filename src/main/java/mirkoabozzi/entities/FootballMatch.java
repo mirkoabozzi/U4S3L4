@@ -3,6 +3,9 @@ package mirkoabozzi.entities;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import mirkoabozzi.enums.EventType;
+
+import java.time.LocalDate;
 
 
 @Entity
@@ -23,6 +26,15 @@ public class FootballMatch extends Event {
     }
 
     public FootballMatch(String homeFootballTeam, String guestFootballTeam, String winner, int goalHomeTeam, int goalGuestTeam) {
+        this.homeFootballTeam = homeFootballTeam;
+        this.guestFootballTeam = guestFootballTeam;
+        this.winner = winner;
+        this.goalHomeTeam = goalHomeTeam;
+        this.goalGuestTeam = goalGuestTeam;
+    }
+
+    public FootballMatch(String title, LocalDate eventData, String description, EventType eventType, int maxPeople, Location location, String homeFootballTeam, String guestFootballTeam, String winner, int goalHomeTeam, int goalGuestTeam) {
+        super(title, eventData, description, eventType, maxPeople, location);
         this.homeFootballTeam = homeFootballTeam;
         this.guestFootballTeam = guestFootballTeam;
         this.winner = winner;
