@@ -43,8 +43,9 @@ public class EventDAO { // buona prassi creare dei DAO per ogni tabella in modo 
         System.out.println("Evento " + eventFound.getTitle() + " eliminato"); // stampo il titolo dell'evento per conferma
     }
 
-    public List<Event> getStreamingConcert() {
-        TypedQuery<Event> query = em.createQuery("SELECT e FROM Event e WHERE streaming = true", Event.class);
+    public List<Event> getStreamingConcert(Boolean streaming) {
+        TypedQuery<Event> query = em.createQuery("SELECT e FROM Event e WHERE streaming =:tf", Event.class);
+        query.setParameter("tf", streaming);
         return query.getResultList();
     }
 
@@ -61,6 +62,11 @@ public class EventDAO { // buona prassi creare dei DAO per ogni tabella in modo 
 
     public List<FootballMatch> getGuestMatchWon() {
         TypedQuery<FootballMatch> query = em.createQuery("SELECT e FROM FootballMatch e WHERE guestFootballTeam = winner", FootballMatch.class);
+        return query.getResultList();
+    }
+
+    public List<FootballMatch> getDrawnMatches() {
+        TypedQuery<FootballMatch> query = em.createQuery("SELECT e FROM FootballMatch e WHERE winner IS NULL", FootballMatch.class);
         return query.getResultList();
     }
 
