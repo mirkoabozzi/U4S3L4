@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("football_match")
-public class footballMatch extends Event {
+public class FootballMatch extends Event {
     @Column(name = "home_football_team", nullable = false)
     private String homeFootballTeam;
     @Column(name = "guest_football_team", nullable = false)
@@ -19,10 +19,10 @@ public class footballMatch extends Event {
     @Column(name = "goal_guest_team", nullable = false)
     private int goalGuestTeam;
 
-    public footballMatch() {
+    public FootballMatch() {
     }
 
-    public footballMatch(String homeFootballTeam, String guestFootballTeam, String winner, int goalHomeTeam, int goalGuestTeam) {
+    public FootballMatch(String homeFootballTeam, String guestFootballTeam, String winner, int goalHomeTeam, int goalGuestTeam) {
         this.homeFootballTeam = homeFootballTeam;
         this.guestFootballTeam = guestFootballTeam;
         this.winner = winner;

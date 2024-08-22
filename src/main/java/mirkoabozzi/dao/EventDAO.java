@@ -2,9 +2,12 @@ package mirkoabozzi.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
 import mirkoabozzi.entities.Event;
+import mirkoabozzi.enums.ConcertType;
 import mirkoabozzi.exceptions.NotFoundException;
 
+import java.util.List;
 import java.util.UUID;
 
 public class EventDAO { // buona prassi creare dei DAO per ogni tabella in modo da tener libero e più leggibile il main
@@ -38,4 +41,17 @@ public class EventDAO { // buona prassi creare dei DAO per ogni tabella in modo 
         transaction.commit(); // rimuovo l'evento dal database
         System.out.println("Evento " + eventFound.getTitle() + " eliminato"); // stampo il titolo dell'evento per conferma
     }
+
+    public List<Event> getStreamingConcert() {
+        TypedQuery<Event> query = em.createQuery("SELECT e FROM Event e WHERE streaming = true", Event.class);
+        return query.getResultList();
+    }
+
+    public List<Event> getConcertPerGenere(ConcertType genere) {
+        TypedQuery<Event> query = em.createQuery("SELECT e FROM Event e WHERE e.concertType =:genere", Event.class);
+        query.setParameter("genere", genere);
+        return query.getResultList();
+    }
+
+
 }

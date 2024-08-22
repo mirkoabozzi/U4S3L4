@@ -35,7 +35,7 @@ public class Person {
 
     @OneToMany()
     @JoinColumn(name = "winner")
-    private List<athleticCompetition> athleticCompetitionList;
+    private List<AthleticCompetition> athleticCompetitionList;
 
 
     public Person() {

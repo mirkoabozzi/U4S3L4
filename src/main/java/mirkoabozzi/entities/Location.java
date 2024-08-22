@@ -24,10 +24,10 @@ public class Location {
     public Location() {
     }
 
-    public Location(String name, String city, List<Event> eventList) {
+    public Location(String name, String city) {
         this.name = name;
         this.city = city;
-        this.eventList = eventList;
+
     }
 
     public UUID getId() {

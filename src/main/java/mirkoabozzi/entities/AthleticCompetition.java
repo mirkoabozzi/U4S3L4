@@ -7,16 +7,16 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 @DiscriminatorValue("athletic_competition")
-public class athleticCompetition extends Event {
+public class AthleticCompetition extends Event {
 
     @ManyToOne
     @JoinColumn(name = "winner", nullable = false)
     private Person winner;
 
-    public athleticCompetition() {
+    public AthleticCompetition() {
     }
 
-    public athleticCompetition(Person winner) {
+    public AthleticCompetition(Person winner) {
         this.winner = winner;
     }
 

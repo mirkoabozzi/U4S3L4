@@ -2,37 +2,30 @@ package mirkoabozzi.entities;
 
 import jakarta.persistence.*;
 import mirkoabozzi.enums.ConcertType;
+import mirkoabozzi.enums.EventType;
+
+import java.time.LocalDate;
 
 @Entity
 @DiscriminatorValue("concert")
-public class concert extends Event {
+public class Concert extends Event {
     @Column(name = "concert_type", nullable = false)
     @Enumerated(EnumType.STRING)
     private ConcertType concertType;
     @Column(name = "streaming")
     private Boolean streaming;
 
-    public concert() {
+    public Concert() {
     }
 
-    public concert(ConcertType concertType, Boolean streaming) {
+    public Concert(ConcertType concertType, Boolean streaming) {
         this.concertType = concertType;
         this.streaming = streaming;
     }
 
-    public ConcertType getConcertType() {
-        return concertType;
-    }
-
-    public void setConcertType(ConcertType concertType) {
+    public Concert(String title, LocalDate eventData, String description, EventType eventType, int maxPeople, Location location, ConcertType concertType, Boolean streaming) {
+        super(title, eventData, description, eventType, maxPeople, location);
         this.concertType = concertType;
-    }
-
-    public Boolean getStreaming() {
-        return streaming;
-    }
-
-    public void setStreaming(Boolean streaming) {
         this.streaming = streaming;
     }
 
